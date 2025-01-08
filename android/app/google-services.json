@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "456258849196",
+    "project_id": "flutterlabs-e2c26",
+    "storage_bucket": "flutterlabs-e2c26.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456258849196:android:b61ccddbf01f68e8381209",
+        "android_client_info": {
+          "package_name": "com.fitne"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0UeFyvMts9aNjJtxAetOqp6ure83Aaso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

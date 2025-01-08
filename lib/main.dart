@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
 import 'SplashScreen.dart';
-void main() {
+import 'package:firebase_core/firebase_core.dart'; // Import firebase_core
+import 'firebase_options.dart';
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   try {
+//     await Firebase.initializeApp();
+//   } catch (e) {
+//     print("Firebase initialization error: $e");
+//   }
+//   runApp(FitnessApp());
+// }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform, // Ensure this is properly set
+    );
+  } catch (e) {
+    print("Firebase initialization error: $e");
+  }
   runApp(FitnessApp());
 }
 

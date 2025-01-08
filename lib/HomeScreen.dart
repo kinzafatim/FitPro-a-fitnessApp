@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -71,24 +69,46 @@ class HomeContentScreen extends StatelessWidget {
         Expanded(
           child: ListView(
             children: [
-              FitnessStatCard(
-                title: 'Workout done',
-                value: '8',
-                icon: Icons.directions_walk,
-                color: Colors.green,
-              ),
-              FitnessStatCard(
-                title: 'In progress',
-                value: '1',
-                icon: Icons.local_fire_department,
-                color: Colors.orange,
-              ),
-              FitnessStatCard(
-                title: 'Workout Time',
-                value: '1 hr',
-                icon: Icons.access_time,
-                color: Colors.blue,
-              ),
+               GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WorkoutScreen()),
+                  );
+                },
+                child: FitnessStatCard(
+                  title: 'Workouts',
+                  value: '8',
+                  icon: Icons.directions_walk,color: Colors.green,
+                  ),
+                ),
+        
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AchievementsScreen()),
+                  );
+                },
+                child: FitnessStatCard(
+                  title: 'Achievements',
+                  value: '8',
+                  icon: Icons.directions_walk,color: Colors.green,
+                  ),
+                ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => GoalsScreen()),
+                  );
+                },
+                child: FitnessStatCard(
+                  title: 'Goals',
+                  value: '8',
+                  icon: Icons.directions_walk,color: Colors.green,
+                  ),
+                ),
               GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -116,6 +136,156 @@ class HomeContentScreen extends StatelessWidget {
     );
   }
 }
+
+//  WorkoutScreen
+class WorkoutScreen extends StatelessWidget {
+  final List<Map<String, String>> workouts = [
+    {'title': 'Cardio Blast', 'duration': '30 mins'},
+    {'title': 'Strength Training', 'duration': '45 mins'},
+    {'title': 'Yoga Flow', 'duration': '20 mins'},
+    {'title': 'HIIT', 'duration': '15 mins'},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Workouts'),
+        backgroundColor: Color(0xFF572C57),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: GridView.builder(
+          itemCount: workouts.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+          ),
+          itemBuilder: (context, index) {
+            return Card(
+              color: Color(0xFF9F5F91),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              child: InkWell(
+                onTap: () {
+                  // Navigate to detailed workout screen
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.fitness_center, size: 40, color: Colors.white),
+                      SizedBox(height: 16),
+                      Text(
+                        workouts[index]['title']!,
+                        style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        workouts[index]['duration']!,
+                        style: TextStyle(fontSize: 16, color: Colors.white70),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+//goals
+class GoalsScreen extends StatelessWidget {
+  final List<String> goals = [
+    'Lose 5 kg in 2 months',
+    'Run 5 km in under 30 minutes',
+    'Do 50 push-ups in a single set',
+    'Attend the gym 4 days a week for 1 month',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Goals'),
+        backgroundColor: Color(0xFF572C57),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          itemCount: goals.length,
+          itemBuilder: (context, index) {
+            return Card(
+              color: Color(0xFFF6EA98),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              elevation: 5,
+              child: ListTile(
+                leading: Icon(Icons.check_circle_outline, color: Color(0xFF572C57)),
+                title: Text(
+                  goals[index],
+                  style: TextStyle(fontSize: 18, color: Colors.black87),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
+// Achievements
+class AchievementsScreen extends StatelessWidget {
+  final List<Map<String, String>> achievements = [
+    {'badge': '🏅', 'title': 'First Workout', 'subtitle': 'Completed your first workout!'},
+    {'badge': '🔥', 'title': 'Burn 500 Calories', 'subtitle': 'You burned 500 calories in a day!'},
+    {'badge': '🏋️', 'title': 'Consistent Streak', 'subtitle': 'Worked out 7 days in a row!'},
+    {'badge': '⭐', 'title': 'Milestone Reached', 'subtitle': 'Achieved your first fitness goal!'},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Achievements'),
+        backgroundColor: Color(0xFF572C57),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          itemCount: achievements.length,
+          itemBuilder: (context, index) {
+            return Card(
+              color: Color(0xFFE26972),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              elevation: 5,
+              child: ListTile(
+                leading: Text(
+                  achievements[index]['badge']!,
+                  style: TextStyle(fontSize: 32),
+                ),
+                title: Text(
+                  achievements[index]['title']!,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                ),
+                subtitle: Text(
+                  achievements[index]['subtitle']!,
+                  style: TextStyle(fontSize: 16, color: Colors.white70),
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+}
+
 class MealScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
