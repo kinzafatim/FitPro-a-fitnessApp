@@ -21,7 +21,7 @@ class _SplashScreenState extends State<SplashScreen>
     )..forward();
 
     // Navigate to LoginScreen after 3 seconds
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 4), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => LoginScreen()),
@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen>
               child: Icon(
                 Icons.fitness_center,
                 size: 100,
-                color: Color(0xFFF6EA98), // Pale Yellow
+                color: Colors.white, // Pale Yellow
               ),
             ),
             SizedBox(height: 16),
@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen>
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xFFF6EA98), // Pale Yellow
+                      color: Colors.white, // Pale Yellow
                     ),
                   ),
                 );
@@ -119,7 +119,7 @@ class _SplashScreenState extends State<SplashScreen>
                       child: Icon(
                         Icons.self_improvement,
                         size: 40,
-                        color: Color(0xFFF6EA98), // Pale Yellow
+                        color:Colors.white, // Pale Yellow
                       ),
                     );
                   },

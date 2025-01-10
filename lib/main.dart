@@ -11,16 +11,19 @@ import 'firebase_options.dart';
 //     print("Firebase initialization error: $e");
 //   }
 //   runApp(FitnessApp());
+// // }
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   try {
+//     await Firebase.initializeApp(
+//       options: DefaultFirebaseOptions.currentPlatform, // Ensure this is properly set
+//     );
+//   } catch (e) {
+//     print("Firebase initialization error: $e");
+//   }
+//   runApp(FitnessApp());
 // }
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform, // Ensure this is properly set
-    );
-  } catch (e) {
-    print("Firebase initialization error: $e");
-  }
+void main(){
   runApp(FitnessApp());
 }
 
@@ -50,7 +53,7 @@ class FitnessApp extends StatelessWidget {
         ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
-          fillColor: Color(0xFFF6EA98), // Pale Yellow
+          fillColor: Color.fromARGB(0, 246, 234, 152),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: BorderSide.none,

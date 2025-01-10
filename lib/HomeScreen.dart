@@ -45,94 +45,131 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class HomeContentScreen extends StatelessWidget {
+  final List<Map<String, dynamic>> features = [
+    {
+      'title': 'Workouts',
+      'value': '8',
+      'icon': Icons.directions_walk,
+      'color': Colors.green,
+      'screen': WorkoutScreen(),
+    },
+    {
+      'title': 'Achievements',
+      'value': '8',
+      'icon': Icons.emoji_events,
+      'color': Colors.amber,
+      'screen': AchievementsScreen(),
+    },
+    {
+      'title': 'Goals',
+      'value': '8',
+      'icon': Icons.flag,
+      'color': Colors.red,
+      'screen': GoalsScreen(),
+    },
+    {
+      'title': 'Meal',
+      'value': 'click',
+      'icon': Icons.restaurant_menu,
+      'color': Colors.blue,
+      'screen': MealScreen(),
+    },
+    {
+      'title': 'More Workouts',
+      'value': '100+',
+      'icon': Icons.access_time,
+      'color': Colors.purple,
+      'screen': WorkoutScreen(), // Placeholder for another screen
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Fit Pro!',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8),
-              Text(
-                'Track your daily fitness progress below.',
-                style: TextStyle(fontSize: 16, color: Colors.grey),
-              ),
-            ],
+    return Scaffold(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Hello, KINZA Pro!',
+                  style: Theme.of(context).textTheme.displayLarge,
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'Track your daily fitness progress below.',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
           ),
-        ),
-        Expanded(
-          child: ListView(
-            children: [
-               GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => WorkoutScreen()),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.builder(
+                itemCount: features.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                ),
+                itemBuilder: (context, index) {
+                  final feature = features[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => feature['screen'],
+                        ),
+                      );
+                    },
+                    child: Card(
+                      color: feature['color'],
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              feature['icon'],
+                              size: 40,
+                              color: Colors.white,
+                            ),
+                            SizedBox(height: 16),
+                            Text(
+                              feature['title'],
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              feature['value'],
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white70,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   );
                 },
-                child: FitnessStatCard(
-                  title: 'Workouts',
-                  value: '8',
-                  icon: Icons.directions_walk,color: Colors.green,
-                  ),
-                ),
-        
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AchievementsScreen()),
-                  );
-                },
-                child: FitnessStatCard(
-                  title: 'Achievements',
-                  value: '8',
-                  icon: Icons.directions_walk,color: Colors.green,
-                  ),
-                ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => GoalsScreen()),
-                  );
-                },
-                child: FitnessStatCard(
-                  title: 'Goals',
-                  value: '8',
-                  icon: Icons.directions_walk,color: Colors.green,
-                  ),
-                ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => MealScreen()),
-                  );
-                },
-                child: FitnessStatCard(
-                  title: 'Meal',
-                  value: 'click',
-                  icon: Icons.restaurant_menu,
-                  color: Colors.blue,
-                ),
               ),
-              FitnessStatCard(
-                title: 'More Workouts',
-                value: '100+',
-                icon: Icons.access_time,
-                color: Colors.blue,
-              ),
-            ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -221,7 +258,7 @@ class GoalsScreen extends StatelessWidget {
           itemCount: goals.length,
           itemBuilder: (context, index) {
             return Card(
-              color: Color(0xFFF6EA98),
+              color:Color(0xFF9F5F91),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               elevation: 5,
               child: ListTile(
@@ -261,7 +298,7 @@ class AchievementsScreen extends StatelessWidget {
           itemCount: achievements.length,
           itemBuilder: (context, index) {
             return Card(
-              color: Color(0xFFE26972),
+            color: Color(0xFF9F5F91), // Lavender
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
               elevation: 5,
               child: ListTile(
@@ -292,7 +329,7 @@ class MealScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Meal Plan'),
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Color(0xFF572C57),
         elevation: 0,
       ),
       body: Padding(
@@ -616,7 +653,7 @@ class FitnessStatCard extends StatelessWidget {
       margin: const EdgeInsets.all(16.0),
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: color,
+          backgroundColor: Color(0xFF9F5F91),
           child: Icon(icon, color: Colors.white),
         ),
         title: Text(title),
